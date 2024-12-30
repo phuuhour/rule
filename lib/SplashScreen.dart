@@ -6,7 +6,7 @@ Widget SplashScreen() {
     body: Center(
       child: Image.asset(
         'assets/imgs/rule_logo.png',
-        height: 160,
+        width: double.infinity,
       ),
     ),
   );
