@@ -6,7 +6,7 @@ Widget SplashScreen() {
       title: Text('Voice Recognition App'),
     ),
     body: Center(
-      child: Text('Welcome to Voice Recognition App'),
+      child: Text('Welcome to '),
     ),
   );
 }
