@@ -11,11 +11,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Voice Recognition App',
+      title: 'RULE',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomeAll(),
+      home: HomeAll(context),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

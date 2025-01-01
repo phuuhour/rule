@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
-Widget HomeAll() {
+Widget HomeAll(BuildContext context) {
   return Scaffold(
     backgroundColor: Colors.white,
     appBar: AppBar(
@@ -13,7 +13,7 @@ Widget HomeAll() {
           Image.asset(
             'assets/imgs/appbar_logo.png',
             fit: BoxFit.contain,
-            height: 70,
+            height: 80,
           ),
         ],
       ),
@@ -23,15 +23,18 @@ Widget HomeAll() {
       child: Column(
         children: [
           SizedBox(height: 5),
+
+          //slider auto use carousel_slider
           CarouselSlider(
             options: CarouselOptions(
               height: 200.0,
               autoPlay: true,
-              autoPlayInterval: Duration(seconds: 8),
-              autoPlayAnimationDuration: Duration(milliseconds: 800),
+              autoPlayInterval: Duration(seconds: 15),
+              autoPlayAnimationDuration: Duration(milliseconds: 3000),
               pauseAutoPlayOnTouch: true,
               viewportFraction: 1.0,
               aspectRatio: 9 / 16,
+              autoPlayCurve: Curves.fastOutSlowIn,
             ),
             items: [
               'assets/imgs/slider1.png',
@@ -44,14 +47,37 @@ Widget HomeAll() {
                     width: MediaQuery.of(context).size.width,
                     margin: EdgeInsets.symmetric(horizontal: 3.0),
                     decoration: BoxDecoration(
-                      color: Colors.amber,
+                      color: Colors.transparent,
                     ),
-                    child: Image.asset(i, fit: BoxFit.cover),
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.circular(5),
+                        child: Image.asset(i, fit: BoxFit.cover)),
                   );
                 },
               );
             }).toList(),
           ),
+          SizedBox(height: 5),
+
+          //idioms
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: Container(
+              padding: EdgeInsets.all(10),
+              height: 40,
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                color: Color.fromARGB(255, 255, 195, 54),
+                borderRadius: BorderRadius.circular(5),
+              ),
+              child: Text('ពាក្យស្លោក',
+                  style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold)),
+            ),
+          ),
+          SizedBox(height: 5),
         ],
       ),
     ),
