@@ -70,7 +70,7 @@ Widget HomeAll(BuildContext context) {
                 color: Color.fromARGB(255, 255, 195, 54),
                 borderRadius: BorderRadius.circular(5),
               ),
-              child: Text('ពាក្យស្លោក',
+              child: Text('Royal university law and economics',
                   style: TextStyle(
                       fontSize: 14,
                       color: Colors.white,
