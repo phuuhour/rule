@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:school_management_system/menu.dart';
 
 Widget HomeAll(BuildContext context) {
@@ -31,7 +32,7 @@ Widget HomeAll(BuildContext context) {
             options: CarouselOptions(
               height: 220.0,
               autoPlay: true,
-              autoPlayInterval: Duration(seconds: 15),
+              autoPlayInterval: Duration(seconds: 5),
               autoPlayAnimationDuration: Duration(milliseconds: 3000),
               pauseAutoPlayOnTouch: true,
               viewportFraction: 1.0,
@@ -47,7 +48,7 @@ Widget HomeAll(BuildContext context) {
                 builder: (BuildContext context) {
                   return Container(
                     width: MediaQuery.of(context).size.width,
-                    margin: EdgeInsets.symmetric(horizontal: 5.0),
+                    margin: EdgeInsets.symmetric(horizontal: 3.0),
                     decoration: BoxDecoration(
                       color: Colors.transparent,
                     ),
@@ -63,46 +64,108 @@ Widget HomeAll(BuildContext context) {
               );
             }).toList(),
           ),
-          SizedBox(height: 5),
+          SizedBox(height: 10),
 
-          //menu
-          GridView.builder(
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 4,
-              mainAxisSpacing: 2.0,
-              crossAxisSpacing: 2.0,
-              childAspectRatio: 0.8,
-            ),
-            itemCount: menuItems.length,
-            itemBuilder: (context, index) {
-              return GestureDetector(
-                onTap: () {},
-                child: Container(
-                  color: Colors.white,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+          //language&date
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  SizedBox(width: 3),
+                  Container(
+                    padding: EdgeInsets.all(10.0),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                    child: Text(
+                      DateFormat('EEEE, dd, MMMM, yyyy').format(DateTime.now()),
+                      style: TextStyle(
+                          fontSize: 14.0, fontWeight: FontWeight.bold),
+                    ),
+                  )
+                ],
+              ),
+              Row(
+                children: [
+                  Column(
                     children: [
                       Image.asset(
-                        menuItems[index].iconPath,
-                        height: 50,
-                        width: 50,
+                        'assets/icons/kh_flag.png',
+                        height: 20,
+                        width: 35,
                         fit: BoxFit.cover,
                       ),
-                      SizedBox(height: 10.0),
                       Text(
-                        menuItems[index].title,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 13.0),
+                        'ភាសាខ្មែរ',
+                        style: TextStyle(fontSize: 11.0),
                       ),
                     ],
                   ),
-                ),
-              );
-            },
+                  SizedBox(width: 8),
+                  Column(
+                    children: [
+                      Image.asset(
+                        'assets/icons/uk_flag.png',
+                        height: 20,
+                        width: 35,
+                        fit: BoxFit.cover,
+                      ),
+                      Text(
+                        'English',
+                        style: TextStyle(fontSize: 11.0),
+                      ),
+                    ],
+                  ),
+                  SizedBox(width: 3),
+                ],
+              ),
+            ],
           ),
-          SizedBox(height: 5),
+
+          SizedBox(height: 10),
+
+          //menu
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 3.0),
+            child: GridView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 4,
+                mainAxisSpacing: 1.0,
+                crossAxisSpacing: 1.0,
+                childAspectRatio: 0.8,
+              ),
+              itemCount: menuItems.length,
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onTap: () {},
+                  child: Container(
+                    color: Colors.white,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          menuItems[index].iconPath,
+                          height: 50,
+                          width: 50,
+                          fit: BoxFit.cover,
+                        ),
+                        SizedBox(height: 10.0),
+                        Text(
+                          menuItems[index].title,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 13.0),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
         ],
       ),
     ),
