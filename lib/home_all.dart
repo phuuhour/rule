@@ -1,12 +1,14 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:school_management_system/menu.dart';
 
 Widget HomeAll(BuildContext context) {
   return Scaffold(
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.grey[200],
     appBar: AppBar(
-      toolbarHeight: 70,
-      backgroundColor: const Color.fromARGB(255, 255, 195, 54),
+      toolbarHeight: 65,
+      backgroundColor: Colors.amber,
+      elevation: 0,
       title: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -27,7 +29,7 @@ Widget HomeAll(BuildContext context) {
           //slider auto use carousel_slider
           CarouselSlider(
             options: CarouselOptions(
-              height: 200.0,
+              height: 220.0,
               autoPlay: true,
               autoPlayInterval: Duration(seconds: 15),
               autoPlayAnimationDuration: Duration(milliseconds: 3000),
@@ -45,13 +47,17 @@ Widget HomeAll(BuildContext context) {
                 builder: (BuildContext context) {
                   return Container(
                     width: MediaQuery.of(context).size.width,
-                    margin: EdgeInsets.symmetric(horizontal: 3.0),
+                    margin: EdgeInsets.symmetric(horizontal: 5.0),
                     decoration: BoxDecoration(
                       color: Colors.transparent,
                     ),
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(5),
-                        child: Image.asset(i, fit: BoxFit.cover)),
+                        child: Image.asset(
+                          i,
+                          fit: BoxFit.cover,
+                          height: 220,
+                        )),
                   );
                 },
               );
@@ -59,23 +65,42 @@ Widget HomeAll(BuildContext context) {
           ),
           SizedBox(height: 5),
 
-          //idioms
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: Container(
-              padding: EdgeInsets.all(10),
-              height: 40,
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                color: Color.fromARGB(255, 255, 195, 54),
-                borderRadius: BorderRadius.circular(5),
-              ),
-              child: Text('Royal university law and economics',
-                  style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold)),
+          //menu
+          GridView.builder(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 4,
+              mainAxisSpacing: 2.0,
+              crossAxisSpacing: 2.0,
+              childAspectRatio: 0.8,
             ),
+            itemCount: menuItems.length,
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                onTap: () {},
+                child: Container(
+                  color: Colors.white,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        menuItems[index].iconPath,
+                        height: 50,
+                        width: 50,
+                        fit: BoxFit.cover,
+                      ),
+                      SizedBox(height: 10.0),
+                      Text(
+                        menuItems[index].title,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 13.0),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
           ),
           SizedBox(height: 5),
         ],
