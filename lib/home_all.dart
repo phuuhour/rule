@@ -129,41 +129,44 @@ Widget HomeAll(BuildContext context) {
           //menu
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 3.0),
-            child: GridView.builder(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 4,
-                mainAxisSpacing: 1.0,
-                crossAxisSpacing: 1.0,
-                childAspectRatio: 0.8,
-              ),
-              itemCount: menuItems.length,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () {},
-                  child: Container(
-                    color: Colors.white,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          menuItems[index].iconPath,
-                          height: 40,
-                          width: 40,
-                          fit: BoxFit.cover,
-                        ),
-                        SizedBox(height: 10.0),
-                        Text(
-                          menuItems[index].title,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 12.0),
-                        ),
-                      ],
+            child: Container(
+              color: Colors.white,
+              child: GridView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 4,
+                  mainAxisSpacing: 0.5,
+                  crossAxisSpacing: 0.5,
+                  childAspectRatio: 0.8,
+                ),
+                itemCount: menuItems.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {},
+                    child: Container(
+                      color: Colors.white,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            menuItems[index].iconPath,
+                            height: 40,
+                            width: 40,
+                            fit: BoxFit.cover,
+                          ),
+                          SizedBox(height: 10.0),
+                          Text(
+                            menuItems[index].title,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(fontSize: 12.0),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                );
-              },
+                  );
+                },
+              ),
             ),
           ),
         ],

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_boxicons/flutter_boxicons.dart';
 import 'package:school_management_system/home_all.dart';
 import 'package:school_management_system/loginpage.dart';
 import 'package:school_management_system/settingpage.dart';
 
 class BottomNav extends StatefulWidget {
+  const BottomNav({super.key});
+
   @override
   _BottomNavState createState() => _BottomNavState();
 }
@@ -31,7 +34,7 @@ class _BottomNavState extends State<BottomNav> {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
+    Theme.of(context);
     return Scaffold(
       body: _widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: NavigationBar(
@@ -42,20 +45,20 @@ class _BottomNavState extends State<BottomNav> {
         destinations: const <NavigationDestination>[
           NavigationDestination(
             selectedIcon: Icon(
-              Icons.home,
+              Boxicons.bxs_home,
               color: Colors.white,
             ),
-            icon: Icon(Icons.home_outlined),
+            icon: Icon(Boxicons.bx_home),
             label: 'Home',
           ),
           NavigationDestination(
-            selectedIcon: Icon(Icons.login, color: Colors.white),
-            icon: Icon(Icons.login_outlined),
+            selectedIcon: Icon(Boxicons.bxs_user, color: Colors.white),
+            icon: Icon(Boxicons.bx_user),
             label: 'Login',
           ),
           NavigationDestination(
-            selectedIcon: Icon(Icons.settings, color: Colors.white),
-            icon: Icon(Icons.settings_outlined),
+            selectedIcon: Icon(Boxicons.bxs_cog, color: Colors.white),
+            icon: Icon(Boxicons.bx_cog),
             label: 'Settings',
           ),
         ],
