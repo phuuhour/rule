@@ -5,10 +5,10 @@ import 'package:school_management_system/menu.dart';
 
 Widget HomeAll(BuildContext context) {
   return Scaffold(
-    backgroundColor: Colors.grey[200],
+    backgroundColor: Colors.blueGrey[50],
     appBar: AppBar(
       toolbarHeight: 65,
-      backgroundColor: Colors.amber,
+      backgroundColor: Colors.blueGrey[50],
       elevation: 0,
       title: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -32,7 +32,7 @@ Widget HomeAll(BuildContext context) {
             options: CarouselOptions(
               height: 220.0,
               autoPlay: true,
-              autoPlayInterval: Duration(seconds: 5),
+              autoPlayInterval: Duration(seconds: 10),
               autoPlayAnimationDuration: Duration(milliseconds: 3000),
               pauseAutoPlayOnTouch: true,
               viewportFraction: 1.0,
@@ -50,7 +50,7 @@ Widget HomeAll(BuildContext context) {
                     width: MediaQuery.of(context).size.width,
                     margin: EdgeInsets.symmetric(horizontal: 3.0),
                     decoration: BoxDecoration(
-                      color: Colors.transparent,
+                      color: Colors.amber[100],
                     ),
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(5),
@@ -69,6 +69,7 @@ Widget HomeAll(BuildContext context) {
           //language&date
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Row(
                 children: [
@@ -118,12 +119,11 @@ Widget HomeAll(BuildContext context) {
                       ),
                     ],
                   ),
-                  SizedBox(width: 3),
+                  SizedBox(width: 12),
                 ],
               ),
             ],
           ),
-
           SizedBox(height: 10),
 
           //menu
@@ -149,15 +149,15 @@ Widget HomeAll(BuildContext context) {
                       children: [
                         Image.asset(
                           menuItems[index].iconPath,
-                          height: 50,
-                          width: 50,
+                          height: 40,
+                          width: 40,
                           fit: BoxFit.cover,
                         ),
                         SizedBox(height: 10.0),
                         Text(
                           menuItems[index].title,
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 13.0),
+                          style: TextStyle(fontSize: 12.0),
                         ),
                       ],
                     ),

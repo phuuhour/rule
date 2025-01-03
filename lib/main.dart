@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:school_management_system/home_all.dart';
+import 'package:school_management_system/bottomnav.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(RULE());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class RULE extends StatelessWidget {
+  const RULE({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomeAll(context),
+      home: BottomNav(),
       debugShowCheckedModeBanner: false,
     );
   }
