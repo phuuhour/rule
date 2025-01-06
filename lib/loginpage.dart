@@ -9,36 +9,26 @@ class LoginPage extends StatelessWidget {
       backgroundColor: Colors.blueGrey[50],
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
-        child: Column(
-          children: [
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(height: 70),
-                  Image(
-                    image: AssetImage('assets/imgs/rule_login.png'),
-                    height: 280,
-                  ),
-                  SizedBox(height: 30),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 40, vertical: 35),
-                    decoration: BoxDecoration(
-                      // ignore: deprecated_member_use
-                      color: Colors.white.withOpacity(0.5),
-                      borderRadius: BorderRadius.circular(25),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+          child: Column(
+            children: [
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 0, vertical: 60),
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10)),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Image(
+                      image: AssetImage('assets/imgs/rule_login.png'),
+                      height: 260,
                     ),
-                    child: Column(
+                    SizedBox(height: 80),
+                    Column(
                       children: [
-                        Text(
-                          'Welcome to RULE',
-                          style: TextStyle(
-                              color: Colors.grey[800],
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(height: 40),
                         Column(
                           children: [
                             Container(
@@ -46,7 +36,7 @@ class LoginPage extends StatelessWidget {
                               width: 300,
                               decoration: BoxDecoration(
                                   color: Colors.amber,
-                                  borderRadius: BorderRadius.circular(25)),
+                                  borderRadius: BorderRadius.circular(5)),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -88,7 +78,7 @@ class LoginPage extends StatelessWidget {
                               width: 300,
                               decoration: BoxDecoration(
                                   color: Colors.amber,
-                                  borderRadius: BorderRadius.circular(25)),
+                                  borderRadius: BorderRadius.circular(5)),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -130,7 +120,7 @@ class LoginPage extends StatelessWidget {
                               width: 300,
                               decoration: BoxDecoration(
                                   color: Colors.amber,
-                                  borderRadius: BorderRadius.circular(25)),
+                                  borderRadius: BorderRadius.circular(5)),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -165,12 +155,12 @@ class LoginPage extends StatelessWidget {
                           ],
                         ),
                       ],
-                    ),
-                  )
-                ],
+                    )
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
