@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boxicons/flutter_boxicons.dart';
 import 'package:school_management_system/home_all.dart';
-import 'package:school_management_system/loginpage.dart';
+import 'package:school_management_system/login_dashboard.dart';
 import 'package:school_management_system/settingpage.dart';
 
 class BottomNav extends StatefulWidget {
