@@ -14,4 +14,5 @@ final List<GridItem> menuItems = [
   GridItem(iconPath: 'assets/category/location.png', title: 'Location'),
   GridItem(iconPath: 'assets/category/website.png', title: 'Website'),
   GridItem(iconPath: 'assets/category/job.png', title: 'Jobs'),
+  GridItem(iconPath: 'assets/category/payment.png', title: 'Payment'),
 ];
