@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:school_management_system/View/Parent.dart';
 import 'package:school_management_system/View/student.dart';
+import 'package:school_management_system/View/teacher.dart';
 import 'package:school_management_system/loginbtn.dart';
 
 class LoginPage extends StatelessWidget {
@@ -24,15 +26,6 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: ListTile(
-          title: Text("Name Student"),
-          subtitle: Text("Class 10"),
-          leading: CircleAvatar(
-            backgroundImage: AssetImage('assets/icons/student.png'),
-          ),
-        ),
-      ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: SafeArea(
@@ -46,15 +39,31 @@ class LoginPage extends StatelessWidget {
                     height: 260,
                   ),
                   SizedBox(height: 80),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (context) => Student()));
-                    },
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: loginButtons.map((loginbtn) {
-                        return Column(
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: loginButtons.map((loginbtn) {
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                if (loginbtn.logintext == 'Login as Student') {
+                                  return Student();
+                                } else if (loginbtn.logintext ==
+                                    'Login as Teacher') {
+                                  return Teacher();
+                                } else if (loginbtn.logintext ==
+                                    'Login as Parent') {
+                                  return Parent();
+                                } else {
+                                  return Container();
+                                }
+                              },
+                            ),
+                          );
+                        },
+                        child: Column(
                           children: [
                             Container(
                               height: 50,
@@ -96,9 +105,9 @@ class LoginPage extends StatelessWidget {
                             ),
                             SizedBox(height: 20),
                           ],
-                        );
-                      }).toList(),
-                    ),
+                        ),
+                      );
+                    }).toList(),
                   ),
                 ],
               ),

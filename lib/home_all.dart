@@ -140,7 +140,7 @@ Widget HomeAll(BuildContext context) {
                     crossAxisCount: 3,
                     mainAxisSpacing: 0.3,
                     crossAxisSpacing: 0.3,
-                    childAspectRatio: 0.8,
+                    childAspectRatio: 1.0,
                   ),
                   itemCount: menuItems.length,
                   itemBuilder: (context, index) {

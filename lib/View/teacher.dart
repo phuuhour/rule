@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:school_management_system/gridview_homescreen.dart';
 
-class Student extends StatefulWidget {
-  const Student({super.key});
+class Teacher extends StatefulWidget {
+  const Teacher({super.key});
 
   @override
-  State<Student> createState() => _StudentState();
+  State<Teacher> createState() => _TeacherState();
 }
 
-class _StudentState extends State<Student> {
+class _TeacherState extends State<Teacher> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,10 +17,10 @@ class _StudentState extends State<Student> {
       appBar: AppBar(
         backgroundColor: Colors.blueGrey[50],
         title: ListTile(
-          title: Text("Name Student"),
+          title: Text("Name Teacher"),
           subtitle: Text("Class 10"),
           leading: CircleAvatar(
-            backgroundImage: AssetImage('assets/icons/student.png'),
+            backgroundImage: AssetImage('assets/icons/teacher.png'),
           ),
         ),
       ),
@@ -139,6 +139,7 @@ class _StudentState extends State<Student> {
                   ),
                 ),
               ),
+              SizedBox(height: 10),
             ],
           ),
         ),
