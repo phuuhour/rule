@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:school_management_system/View/Parent.dart';
-import 'package:school_management_system/View/student.dart';
-import 'package:school_management_system/View/teacher.dart';
-import 'package:school_management_system/loginbtn.dart';
+import 'package:school_management_system/login/parent_login.dart';
+import 'package:school_management_system/login/student_login.dart';
+import 'package:school_management_system/login/teacher_login.dart';
+import 'package:school_management_system/login/loginbtn.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
