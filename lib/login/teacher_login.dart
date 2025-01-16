@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
+import 'package:school_management_system/dashbord/teacher_dashboard.dart';
 
 class Teacher extends StatefulWidget {
   const Teacher({super.key});
@@ -9,6 +10,9 @@ class Teacher extends StatefulWidget {
 }
 
 class _TeacherState extends State<Teacher> {
+  final TextEditingController tPasswdID = TextEditingController();
+  final TextEditingController tTeaID = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,6 +50,7 @@ class _TeacherState extends State<Teacher> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: TextField(
+                    controller: tTeaID,
                     decoration: InputDecoration(
                         contentPadding: EdgeInsets.symmetric(vertical: 15),
                         hintText: 'Teacher ID',
@@ -78,6 +83,7 @@ class _TeacherState extends State<Teacher> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: TextField(
+                    controller: tPasswdID,
                     decoration: InputDecoration(
                         contentPadding: EdgeInsets.symmetric(vertical: 15),
                         hintText: 'Password',
@@ -110,7 +116,29 @@ class _TeacherState extends State<Teacher> {
                 ),
                 SizedBox(height: 60),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    if (tTeaID.text == 'teacher' && tPasswdID.text == '0022') {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => TeacherDashboard(),
+                        ),
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('Login Successful'),
+                          backgroundColor: Colors.blue,
+                        ),
+                      );
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('Invalid credentials'),
+                          backgroundColor: Colors.red,
+                        ),
+                      );
+                    }
+                  },
                   child: Container(
                     width: 200,
                     height: 50,
@@ -128,7 +156,7 @@ class _TeacherState extends State<Teacher> {
                       ),
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ),

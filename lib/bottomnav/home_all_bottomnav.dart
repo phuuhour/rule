@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boxicons/flutter_boxicons.dart';
-import 'package:school_management_system/home_all.dart';
+import 'package:school_management_system/home_all_dashborad.dart';
 import 'package:school_management_system/login/login_dashboard.dart';
 import 'package:school_management_system/settingpage.dart';
 

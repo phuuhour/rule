@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
-import 'package:school_management_system/dashbord/student_dashbord.dart';
+import 'package:school_management_system/dashbord/student_dashboard.dart';
 
 class Student extends StatefulWidget {
-  Student({super.key});
+  const Student({super.key});
 
   @override
   State<Student> createState() => _StudentState();
@@ -117,12 +117,17 @@ class _StudentState extends State<Student> {
                 SizedBox(height: 60),
                 GestureDetector(
                   onTap: () {
-                    if (tStuID.text == 'student' &&
-                        tPasswdID.text == 'student') {
-                      Navigator.push(
+                    if (tStuID.text == 'student' && tPasswdID.text == '0022') {
+                      Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => StudentDashbord(),
+                          builder: (context) => StudentDashboard(),
+                        ),
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('Login Successful'),
+                          backgroundColor: Colors.blue,
                         ),
                       );
                     } else {
@@ -151,7 +156,7 @@ class _StudentState extends State<Student> {
                       ),
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:school_management_system/bottomnav.dart';
+import 'package:school_management_system/home_all_bottomnav.dart';
 
 void main() {
   runApp(RULE());

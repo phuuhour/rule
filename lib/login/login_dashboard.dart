@@ -2,25 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:school_management_system/login/parent_login.dart';
 import 'package:school_management_system/login/student_login.dart';
 import 'package:school_management_system/login/teacher_login.dart';
-import 'package:school_management_system/login/loginbtn.dart';
+
+class LoginButton {
+  final String imagePath;
+  final String logintext;
+
+  LoginButton({
+    required this.imagePath,
+    this.logintext = '',
+  });
+}
+
+final List<LoginButton> loginButtons = [
+  LoginButton(
+    imagePath: 'assets/icons/student.png',
+    logintext: 'Login as Student',
+  ),
+  LoginButton(
+    imagePath: 'assets/icons/teacher.png',
+    logintext: 'Login as Teacher',
+  ),
+  LoginButton(
+    imagePath: 'assets/icons/parent.png',
+    logintext: 'Login as Parent',
+  ),
+];
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
-
-  final List<LoginButton> loginButtons = [
-    LoginButton(
-      imagePath: 'assets/icons/student.png',
-      logintext: 'Login as Student',
-    ),
-    LoginButton(
-      imagePath: 'assets/icons/teacher.png',
-      logintext: 'Login as Teacher',
-    ),
-    LoginButton(
-      imagePath: 'assets/icons/parent.png',
-      logintext: 'Login as Parent',
-    ),
-  ];
 
   @override
   Widget build(BuildContext context) {
