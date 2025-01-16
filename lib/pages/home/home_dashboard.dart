@@ -1,9 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:school_management_system/gridview_homescreen.dart';
+import 'package:school_management_system/data/grid/grid_home(share).dart';
 
-Widget HomeAll(BuildContext context) {
+Widget HomeDashboard(BuildContext context) {
   return Scaffold(
     backgroundColor: Colors.blueGrey[50],
     appBar: AppBar(

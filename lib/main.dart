@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:school_management_system/home_all_bottomnav.dart';
+import 'package:school_management_system/bottom_nav/home_bottom_nav.dart';
 
 void main() {
   runApp(RULE());
@@ -15,7 +15,7 @@ class RULE extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: BottomNav(),
+      home: HomeBottomNav(),
       debugShowCheckedModeBanner: false,
     );
   }

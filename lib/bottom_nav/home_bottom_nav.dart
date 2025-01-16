@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boxicons/flutter_boxicons.dart';
-import 'package:school_management_system/home_all_dashborad.dart';
-import 'package:school_management_system/login/login_dashboard.dart';
-import 'package:school_management_system/settingpage.dart';
+import 'package:school_management_system/pages/home/home_dashboard.dart';
+import 'package:school_management_system/pages/home/login_dashboard.dart';
+import 'package:school_management_system/pages/home/settings_page.dart';
 
-class BottomNav extends StatefulWidget {
-  const BottomNav({super.key});
+class HomeBottomNav extends StatefulWidget {
+  const HomeBottomNav({super.key});
 
   @override
-  _BottomNavState createState() => _BottomNavState();
+  _HomeBottomNavState createState() => _HomeBottomNavState();
 }
 
-class _BottomNavState extends State<BottomNav> {
+class _HomeBottomNavState extends State<HomeBottomNav> {
   int _selectedIndex = 0;
 
   late List<Widget> _widgetOptions;
@@ -20,7 +20,7 @@ class _BottomNavState extends State<BottomNav> {
   void initState() {
     super.initState();
     _widgetOptions = <Widget>[
-      HomeAll(context),
+      HomeDashboard(context),
       LoginPage(),
       SettingsPage(),
     ];

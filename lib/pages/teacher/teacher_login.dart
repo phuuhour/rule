@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
-import 'package:school_management_system/dashbord/teacher_dashboard.dart';
+import 'package:school_management_system/pages/teacher/teacher_dashboard.dart';
 
-class Teacher extends StatefulWidget {
-  const Teacher({super.key});
+class TeacherLogin extends StatefulWidget {
+  const TeacherLogin({super.key});
 
   @override
-  State<Teacher> createState() => _TeacherState();
+  State<TeacherLogin> createState() => _TeacherLoginState();
 }
 
-class _TeacherState extends State<Teacher> {
+class _TeacherLoginState extends State<TeacherLogin> {
   final TextEditingController tPasswdID = TextEditingController();
   final TextEditingController tTeaID = TextEditingController();
 

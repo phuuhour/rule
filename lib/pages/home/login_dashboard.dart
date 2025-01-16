@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:school_management_system/login/parent_login.dart';
-import 'package:school_management_system/login/student_login.dart';
-import 'package:school_management_system/login/teacher_login.dart';
+import 'package:school_management_system/pages/parent/parent_login.dart';
+import 'package:school_management_system/pages/student/student_login.dart';
+import 'package:school_management_system/pages/teacher/teacher_login.dart';
 
 class LoginButton {
   final String imagePath;
@@ -58,13 +58,13 @@ class LoginPage extends StatelessWidget {
                             MaterialPageRoute(
                               builder: (context) {
                                 if (loginbtn.logintext == 'Login as Student') {
-                                  return Student();
+                                  return StudentLogin();
                                 } else if (loginbtn.logintext ==
                                     'Login as Teacher') {
-                                  return Teacher();
+                                  return TeacherLogin();
                                 } else if (loginbtn.logintext ==
                                     'Login as Parent') {
-                                  return Parent();
+                                  return ParentLogin();
                                 } else {
                                   return Container();
                                 }
