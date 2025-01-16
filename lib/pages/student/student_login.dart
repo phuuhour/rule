@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:school_management_system/bottom_nav/student_bottom_nav.dart';
-import 'package:school_management_system/pages/student/student_dashboard.dart';
 
 class StudentLogin extends StatefulWidget {
   const StudentLogin({super.key});

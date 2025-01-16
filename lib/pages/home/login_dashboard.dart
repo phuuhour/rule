@@ -29,7 +29,7 @@ final List<LoginButton> loginButtons = [
 ];
 
 class LoginPage extends StatelessWidget {
-  LoginPage({super.key});
+  const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {

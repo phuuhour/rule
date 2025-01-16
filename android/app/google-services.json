@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "675284775281",
+    "project_id": "school-management-app-rule",
+    "storage_bucket": "school-management-app-rule.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:675284775281:android:15edaff44e628e2ab286d0",
+        "android_client_info": {
+          "package_name": "com.example.school_management_system"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA24RPXy_cdvpB6ATBIJOaoqTU6ly4d9UM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
