@@ -53,7 +53,7 @@ class LoginPage extends StatelessWidget {
                     children: loginButtons.map((loginbtn) {
                       return GestureDetector(
                         onTap: () {
-                          Navigator.push(
+                          Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                               builder: (context) {

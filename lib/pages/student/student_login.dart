@@ -13,6 +13,36 @@ class _StudentLoginState extends State<StudentLogin> {
   final TextEditingController tPasswdID = TextEditingController();
   final TextEditingController tStuID = TextEditingController();
 
+  void handleLogin(BuildContext context, TextEditingController tStuID,
+      TextEditingController tPasswdID) {
+    if (tStuID.text == 'student' && tPasswdID.text == '0022') {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => StudentBottomNav(),
+        ),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Login Successful'),
+          backgroundColor: Colors.blue,
+          action: SnackBarAction(
+            label: 'OK',
+            onPressed: () {},
+            textColor: Colors.white,
+          ),
+        ),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Invalid credentials'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -117,27 +147,7 @@ class _StudentLoginState extends State<StudentLogin> {
                 SizedBox(height: 60),
                 GestureDetector(
                   onTap: () {
-                    if (tStuID.text == 'student' && tPasswdID.text == '0022') {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => StudentBottomNav(),
-                        ),
-                      );
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text('Login Successful'),
-                          backgroundColor: Colors.blue,
-                        ),
-                      );
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text('Invalid credentials'),
-                          backgroundColor: Colors.red,
-                        ),
-                      );
-                    }
+                    handleLogin(context, tStuID, tPasswdID);
                   },
                   child: Container(
                     width: 200,

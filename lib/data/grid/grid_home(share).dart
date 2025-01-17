@@ -5,14 +5,17 @@ class GridHome {
   GridHome({required this.iconPath, this.title = ''});
 }
 
-final List<GridHome> menuItems = [
-  GridHome(iconPath: 'assets/category/news.png', title: 'Information'),
-  GridHome(iconPath: 'assets/category/courses.png', title: 'Courses'),
-  GridHome(iconPath: 'assets/category/register.png', title: 'Register'),
-  GridHome(iconPath: 'assets/category/price.png', title: 'Tuitions'),
-  GridHome(iconPath: 'assets/category/contact.png', title: 'Contact'),
-  GridHome(iconPath: 'assets/category/location.png', title: 'Location'),
-  GridHome(iconPath: 'assets/category/website.png', title: 'Website'),
-  GridHome(iconPath: 'assets/category/job.png', title: 'Jobs'),
-  GridHome(iconPath: 'assets/category/payment.png', title: 'Payment'),
+final List<GridHome> menuhome = [
+  GridHome(
+      iconPath: 'assets/grid_data/menuhome/news.png', title: 'Information'),
+  GridHome(iconPath: 'assets/grid_data/menuhome/courses.png', title: 'Courses'),
+  GridHome(
+      iconPath: 'assets/grid_data/menuhome/register.png', title: 'Register'),
+  GridHome(iconPath: 'assets/grid_data/menuhome/price.png', title: 'Tuitions'),
+  GridHome(iconPath: 'assets/grid_data/menuhome/contact.png', title: 'Contact'),
+  GridHome(
+      iconPath: 'assets/grid_data/menuhome/location.png', title: 'Location'),
+  GridHome(iconPath: 'assets/grid_data/menuhome/website.png', title: 'Website'),
+  GridHome(iconPath: 'assets/grid_data/menuhome/job.png', title: 'Jobs'),
+  GridHome(iconPath: 'assets/grid_data/menuhome/payment.png', title: 'Payment'),
 ];

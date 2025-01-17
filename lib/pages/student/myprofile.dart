@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CheckAttendance extends StatelessWidget {
-  const CheckAttendance({super.key});
+class MyProfile extends StatelessWidget {
+  const MyProfile({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class CheckAttendance extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(height: 20),
-              Text('Student Attendance'),
+              Text('Here is my account information'),
             ],
           ),
         ),
