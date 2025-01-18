@@ -17,7 +17,7 @@ class GradeAssignment extends StatelessWidget {
             size: 22,
           ),
           onPressed: () {
-            Navigator.pop(context); // Navigate back to the previous page
+            Navigator.pop(context);
           },
         ),
         backgroundColor: Colors.white,
@@ -27,13 +27,6 @@ class GradeAssignment extends StatelessWidget {
           "Grades & Assignments",
           style: TextStyle(fontSize: 20),
         ),
-        actions: [
-          IconButton(
-              onPressed: () {},
-              icon: HugeIcon(
-                  icon: HugeIcons.strokeRoundedArrangeByLettersAZ,
-                  color: Colors.black87))
-        ],
       ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
@@ -60,8 +53,8 @@ class GradeAssignment extends StatelessWidget {
                           color: Colors.black87, fontWeight: FontWeight.bold),
                     ),
                     subtitle: Text(
-                      grade[index].subtitle,
-                      style: TextStyle(color: Colors.black45),
+                      "Teacher : ${grade[index].teachername}",
+                      style: TextStyle(color: Colors.black54),
                     ),
                     leading: ClipRRect(
                       borderRadius: BorderRadius.circular(5),

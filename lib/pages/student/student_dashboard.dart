@@ -64,35 +64,17 @@ class StudentDashboard extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      Column(
-                        children: [
-                          Image.asset(
-                            'assets/icons/kh_flag.png',
-                            height: 20,
-                            width: 35,
-                            fit: BoxFit.cover,
-                          ),
-                          Text(
-                            'ភាសាខ្មែរ',
-                            style: TextStyle(fontSize: 11.0),
-                          ),
-                        ],
-                      ),
-                      SizedBox(width: 8),
-                      Column(
-                        children: [
-                          Image.asset(
-                            'assets/icons/uk_flag.png',
-                            height: 20,
-                            width: 35,
-                            fit: BoxFit.cover,
-                          ),
-                          Text(
-                            'English',
-                            style: TextStyle(fontSize: 11.0),
-                          ),
-                        ],
-                      ),
+                      Container(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(5)),
+                        child: Text(
+                          "Grade : IT4C01",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      )
                     ],
                   ),
                 ],

@@ -24,7 +24,10 @@ class _StudentLoginState extends State<StudentLogin> {
       );
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Login Successful'),
+          content: Text(
+            'Login Successful',
+            style: TextStyle(color: Colors.white),
+          ),
           backgroundColor: Colors.blue,
           action: SnackBarAction(
             label: 'OK',
@@ -41,6 +44,14 @@ class _StudentLoginState extends State<StudentLogin> {
         ),
       );
     }
+  }
+
+  late bool _obscureText;
+
+  @override
+  void initState() {
+    super.initState();
+    _obscureText = false;
   }
 
   @override
@@ -114,13 +125,23 @@ class _StudentLoginState extends State<StudentLogin> {
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: TextField(
                     controller: tPasswdID,
+                    obscureText: !_obscureText,
                     decoration: InputDecoration(
                         contentPadding: EdgeInsets.symmetric(vertical: 15),
                         hintText: 'Password',
-                        suffixIcon: Icon(
-                          HugeIcons.strokeRoundedViewOffSlash,
-                          color: Colors.amber,
-                        ),
+                        suffixIcon: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                _obscureText = !_obscureText;
+                              });
+                            },
+                            icon: (_obscureText
+                                ? HugeIcon(
+                                    icon: HugeIcons.strokeRoundedViewOffSlash,
+                                    color: Colors.amber)
+                                : HugeIcon(
+                                    icon: HugeIcons.strokeRoundedView,
+                                    color: Colors.amber))),
                         prefixIcon: Icon(HugeIcons.strokeRoundedLockPassword,
                             color: Colors.amber),
                         enabledBorder: OutlineInputBorder(
@@ -141,7 +162,6 @@ class _StudentLoginState extends State<StudentLogin> {
                         ),
                         filled: true,
                         fillColor: Colors.white70),
-                    obscureText: true,
                   ),
                 ),
                 SizedBox(height: 60),
