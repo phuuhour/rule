@@ -1,6 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:school_management_system/pages/parent/parent_dashboard.dart';
+import 'package:school_management_system/pages/teacher/teacher_dashboard.dart';
 
 class ParentLogin extends StatefulWidget {
   const ParentLogin({super.key});
@@ -11,7 +14,74 @@ class ParentLogin extends StatefulWidget {
 
 class _ParentLoginState extends State<ParentLogin> {
   final TextEditingController tPasswdID = TextEditingController();
-  final TextEditingController tParID = TextEditingController();
+  final TextEditingController tParEmail = TextEditingController();
+
+  bool _isLoading = false;
+
+  Future<void> handleLogin(BuildContext context,
+      TextEditingController tParEmail, TextEditingController tPasswdID) async {
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
+    final navigator = Navigator.of(context);
+
+    setState(() {
+      _isLoading = true;
+    });
+
+    try {
+      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: tParEmail.text,
+        password: tPasswdID.text,
+      );
+
+      if (credential.user != null) {
+        final querySnapshot = await FirebaseFirestore.instance
+            .collection('parents')
+            .where('email', isEqualTo: tParEmail.text)
+            .get();
+
+        if (!mounted) return;
+
+        if (querySnapshot.docs.isNotEmpty) {
+          navigator.pushReplacement(
+            MaterialPageRoute(
+              builder: (context) => const ParentDashboard(),
+            ),
+          );
+        } else {
+          scaffoldMessenger.showSnackBar(
+            const SnackBar(content: Text('Not a teacher account')),
+          );
+        }
+      }
+    } on FirebaseAuthException catch (e) {
+      String errorMessage = 'An error occurred';
+      if (e.code == 'user-not-found') {
+        errorMessage = 'No user found with this email';
+      } else if (e.code == 'wrong-password') {
+        errorMessage = 'Wrong password';
+      }
+      if (!mounted) return;
+
+      scaffoldMessenger.showSnackBar(
+        SnackBar(content: Text(errorMessage)),
+      );
+    } finally {
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+        });
+      }
+    }
+  }
+
+  late bool _obscureText;
+
+  @override
+  void initState() {
+    super.initState();
+    _obscureText = false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +103,7 @@ class _ParentLoginState extends State<ParentLogin> {
                 ),
                 const SizedBox(height: 15),
                 const Text(
-                  'Parent',
+                  'Teacher',
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -49,10 +119,10 @@ class _ParentLoginState extends State<ParentLogin> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: TextField(
-                    controller: tParID,
+                    controller: tParEmail,
                     decoration: InputDecoration(
                         contentPadding: EdgeInsets.symmetric(vertical: 15),
-                        hintText: 'Parent ID',
+                        hintText: 'Parent Email',
                         prefixIcon: Icon(HugeIcons.strokeRoundedUserCircle,
                             color: Colors.amber),
                         enabledBorder: OutlineInputBorder(
@@ -83,13 +153,23 @@ class _ParentLoginState extends State<ParentLogin> {
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: TextField(
                     controller: tPasswdID,
+                    obscureText: !_obscureText,
                     decoration: InputDecoration(
                         contentPadding: EdgeInsets.symmetric(vertical: 15),
                         hintText: 'Password',
-                        suffixIcon: Icon(
-                          HugeIcons.strokeRoundedViewOffSlash,
-                          color: Colors.amber,
-                        ),
+                        suffixIcon: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                _obscureText = !_obscureText;
+                              });
+                            },
+                            icon: (_obscureText
+                                ? HugeIcon(
+                                    icon: HugeIcons.strokeRoundedViewOffSlash,
+                                    color: Colors.amber)
+                                : HugeIcon(
+                                    icon: HugeIcons.strokeRoundedView,
+                                    color: Colors.amber))),
                         prefixIcon: Icon(HugeIcons.strokeRoundedLockPassword,
                             color: Colors.amber),
                         enabledBorder: OutlineInputBorder(
@@ -110,34 +190,15 @@ class _ParentLoginState extends State<ParentLogin> {
                         ),
                         filled: true,
                         fillColor: Colors.white70),
-                    obscureText: true,
                   ),
                 ),
                 SizedBox(height: 60),
                 GestureDetector(
-                  onTap: () {
-                    if (tParID.text == 'parent' && tPasswdID.text == '0022') {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ParentDashboard(),
-                        ),
-                      );
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text('Login Successful'),
-                          backgroundColor: Colors.blue,
-                        ),
-                      );
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text('Invalid credentials'),
-                          backgroundColor: Colors.red,
-                        ),
-                      );
-                    }
-                  },
+                  onTap: _isLoading
+                      ? null
+                      : () {
+                          handleLogin(context, tParEmail, tPasswdID);
+                        },
                   child: Container(
                     width: 200,
                     height: 50,
@@ -146,13 +207,15 @@ class _ParentLoginState extends State<ParentLogin> {
                       borderRadius: BorderRadius.circular(40),
                     ),
                     child: Center(
-                      child: Text(
-                        "Login",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold),
-                      ),
+                      child: _isLoading
+                          ? const CircularProgressIndicator(color: Colors.white)
+                          : Text(
+                              "Login",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold),
+                            ),
                     ),
                   ),
                 ),

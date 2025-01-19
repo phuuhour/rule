@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:school_management_system/pages/teacher/teacher_dashboard.dart';
 
 class TeacherLogin extends StatefulWidget {
@@ -11,7 +13,75 @@ class TeacherLogin extends StatefulWidget {
 
 class _TeacherLoginState extends State<TeacherLogin> {
   final TextEditingController tPasswdID = TextEditingController();
-  final TextEditingController tTeaID = TextEditingController();
+  final TextEditingController tTeachEmail = TextEditingController();
+
+  bool _isLoading = false;
+
+  Future<void> handleLogin(
+      BuildContext context,
+      TextEditingController tTeachEmail,
+      TextEditingController tPasswdID) async {
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
+    final navigator = Navigator.of(context);
+
+    setState(() {
+      _isLoading = true;
+    });
+
+    try {
+      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: tTeachEmail.text,
+        password: tPasswdID.text,
+      );
+
+      if (credential.user != null) {
+        final querySnapshot = await FirebaseFirestore.instance
+            .collection('teachers')
+            .where('email', isEqualTo: tTeachEmail.text)
+            .get();
+
+        if (!mounted) return;
+
+        if (querySnapshot.docs.isNotEmpty) {
+          navigator.pushReplacement(
+            MaterialPageRoute(
+              builder: (context) => const TeacherDashboard(),
+            ),
+          );
+        } else {
+          scaffoldMessenger.showSnackBar(
+            const SnackBar(content: Text('Not a teacher account')),
+          );
+        }
+      }
+    } on FirebaseAuthException catch (e) {
+      String errorMessage = 'An error occurred';
+      if (e.code == 'user-not-found') {
+        errorMessage = 'No user found with this email';
+      } else if (e.code == 'wrong-password') {
+        errorMessage = 'Wrong password';
+      }
+      if (!mounted) return;
+
+      scaffoldMessenger.showSnackBar(
+        SnackBar(content: Text(errorMessage)),
+      );
+    } finally {
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+        });
+      }
+    }
+  }
+
+  late bool _obscureText;
+
+  @override
+  void initState() {
+    super.initState();
+    _obscureText = false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,10 +120,10 @@ class _TeacherLoginState extends State<TeacherLogin> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: TextField(
-                    controller: tTeaID,
+                    controller: tTeachEmail,
                     decoration: InputDecoration(
                         contentPadding: EdgeInsets.symmetric(vertical: 15),
-                        hintText: 'Teacher ID',
+                        hintText: 'Teacher Email',
                         prefixIcon: Icon(HugeIcons.strokeRoundedUserCircle,
                             color: Colors.amber),
                         enabledBorder: OutlineInputBorder(
@@ -84,13 +154,23 @@ class _TeacherLoginState extends State<TeacherLogin> {
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: TextField(
                     controller: tPasswdID,
+                    obscureText: !_obscureText,
                     decoration: InputDecoration(
                         contentPadding: EdgeInsets.symmetric(vertical: 15),
                         hintText: 'Password',
-                        suffixIcon: Icon(
-                          HugeIcons.strokeRoundedViewOffSlash,
-                          color: Colors.amber,
-                        ),
+                        suffixIcon: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                _obscureText = !_obscureText;
+                              });
+                            },
+                            icon: (_obscureText
+                                ? HugeIcon(
+                                    icon: HugeIcons.strokeRoundedViewOffSlash,
+                                    color: Colors.amber)
+                                : HugeIcon(
+                                    icon: HugeIcons.strokeRoundedView,
+                                    color: Colors.amber))),
                         prefixIcon: Icon(HugeIcons.strokeRoundedLockPassword,
                             color: Colors.amber),
                         enabledBorder: OutlineInputBorder(
@@ -111,34 +191,15 @@ class _TeacherLoginState extends State<TeacherLogin> {
                         ),
                         filled: true,
                         fillColor: Colors.white70),
-                    obscureText: true,
                   ),
                 ),
                 SizedBox(height: 60),
                 GestureDetector(
-                  onTap: () {
-                    if (tTeaID.text == 'teacher' && tPasswdID.text == '0022') {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => TeacherDashboard(),
-                        ),
-                      );
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text('Login Successful'),
-                          backgroundColor: Colors.blue,
-                        ),
-                      );
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text('Invalid credentials'),
-                          backgroundColor: Colors.red,
-                        ),
-                      );
-                    }
-                  },
+                  onTap: _isLoading
+                      ? null
+                      : () {
+                          handleLogin(context, tTeachEmail, tPasswdID);
+                        },
                   child: Container(
                     width: 200,
                     height: 50,
@@ -147,13 +208,15 @@ class _TeacherLoginState extends State<TeacherLogin> {
                       borderRadius: BorderRadius.circular(40),
                     ),
                     child: Center(
-                      child: Text(
-                        "Login",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold),
-                      ),
+                      child: _isLoading
+                          ? const CircularProgressIndicator(color: Colors.white)
+                          : Text(
+                              "Login",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold),
+                            ),
                     ),
                   ),
                 ),

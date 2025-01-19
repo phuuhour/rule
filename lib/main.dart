@@ -1,8 +1,12 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:school_management_system/bottom_nav/home_bottom_nav.dart';
+// ignore: unused_import
 import 'package:school_management_system/bottom_nav/student_bottom_nav.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(RULE());
 }
 

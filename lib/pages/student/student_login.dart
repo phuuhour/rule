@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:school_management_system/bottom_nav/student_bottom_nav.dart';
 
 class StudentLogin extends StatefulWidget {
@@ -11,38 +13,63 @@ class StudentLogin extends StatefulWidget {
 
 class _StudentLoginState extends State<StudentLogin> {
   final TextEditingController tPasswdID = TextEditingController();
-  final TextEditingController tStuID = TextEditingController();
+  final TextEditingController tStuEmail = TextEditingController();
 
-  void handleLogin(BuildContext context, TextEditingController tStuID,
-      TextEditingController tPasswdID) {
-    if (tStuID.text == 'student' && tPasswdID.text == '0022') {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => StudentBottomNav(),
-        ),
+  bool _isLoading = false;
+
+  Future<void> handleLogin(BuildContext context, TextEditingController tStuID,
+      TextEditingController tPasswdID) async {
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
+    final navigator = Navigator.of(context);
+
+    setState(() {
+      _isLoading = true;
+    });
+
+    try {
+      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: tStuID.text,
+        password: tPasswdID.text,
       );
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            'Login Successful',
-            style: TextStyle(color: Colors.white),
-          ),
-          backgroundColor: Colors.blue,
-          action: SnackBarAction(
-            label: 'OK',
-            onPressed: () {},
-            textColor: Colors.white,
-          ),
-        ),
+
+      if (credential.user != null) {
+        final querySnapshot = await FirebaseFirestore.instance
+            .collection('students')
+            .where('email', isEqualTo: tStuID.text)
+            .get();
+
+        if (!mounted) return;
+
+        if (querySnapshot.docs.isNotEmpty) {
+          navigator.pushReplacement(
+            MaterialPageRoute(
+              builder: (context) => const StudentBottomNav(),
+            ),
+          );
+        } else {
+          scaffoldMessenger.showSnackBar(
+            const SnackBar(content: Text('Not a student account')),
+          );
+        }
+      }
+    } on FirebaseAuthException catch (e) {
+      String errorMessage = 'An error occurred';
+      if (e.code == 'user-not-found') {
+        errorMessage = 'No user found with this email';
+      } else if (e.code == 'wrong-password') {
+        errorMessage = 'Wrong password';
+      }
+      if (!mounted) return;
+
+      scaffoldMessenger.showSnackBar(
+        SnackBar(content: Text(errorMessage)),
       );
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Invalid credentials'),
-          backgroundColor: Colors.red,
-        ),
-      );
+    } finally {
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+        });
+      }
     }
   }
 
@@ -91,10 +118,10 @@ class _StudentLoginState extends State<StudentLogin> {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: TextField(
-                    controller: tStuID,
+                    controller: tStuEmail,
                     decoration: InputDecoration(
                         contentPadding: EdgeInsets.symmetric(vertical: 15),
-                        hintText: 'Student ID',
+                        hintText: 'Student Email',
                         prefixIcon: Icon(HugeIcons.strokeRoundedUserCircle,
                             color: Colors.amber),
                         enabledBorder: OutlineInputBorder(
@@ -166,9 +193,11 @@ class _StudentLoginState extends State<StudentLogin> {
                 ),
                 SizedBox(height: 60),
                 GestureDetector(
-                  onTap: () {
-                    handleLogin(context, tStuID, tPasswdID);
-                  },
+                  onTap: _isLoading
+                      ? null
+                      : () {
+                          handleLogin(context, tStuEmail, tPasswdID);
+                        },
                   child: Container(
                     width: 200,
                     height: 50,
@@ -177,13 +206,15 @@ class _StudentLoginState extends State<StudentLogin> {
                       borderRadius: BorderRadius.circular(40),
                     ),
                     child: Center(
-                      child: Text(
-                        "Login",
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold),
-                      ),
+                      child: _isLoading
+                          ? const CircularProgressIndicator(color: Colors.white)
+                          : Text(
+                              "Login",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold),
+                            ),
                     ),
                   ),
                 ),

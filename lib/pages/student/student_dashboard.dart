@@ -6,7 +6,7 @@ import 'package:school_management_system/pages/student/student_category/attendan
 import 'package:school_management_system/pages/student/student_category/chat.dart';
 import 'package:school_management_system/pages/student/student_category/contact.dart';
 import 'package:school_management_system/pages/student/student_category/event.dart';
-import 'package:school_management_system/pages/student/student_category/grade_assignment.dart';
+import 'package:school_management_system/pages/student/student_category/grade_assignment/grade.dart';
 import 'package:school_management_system/pages/student/student_category/payment.dart';
 import 'package:school_management_system/pages/student/student_category/result.dart';
 import 'package:school_management_system/pages/student/student_category/schedule.dart';
@@ -105,7 +105,7 @@ class StudentDashboard extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => GradeAssignment()),
+                                    builder: (context) => GradeScreen()),
                               );
                               break;
                             case 'Schedule':

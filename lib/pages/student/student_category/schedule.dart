@@ -42,7 +42,7 @@ class _StudentScheduleState extends State<StudentSchedule> {
                 color: Colors.black87),
             onSelected: (value) {
               setState(() {
-                scheduleImage = value == 'term1'
+                scheduleImage = value == 'Semester1'
                     ? 'assets/imgs/schedules1.png'
                     : 'assets/imgs/schedules2.png';
               });
@@ -50,12 +50,12 @@ class _StudentScheduleState extends State<StudentSchedule> {
             menuPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
               const PopupMenuItem<String>(
-                value: 'term1',
-                child: Text('Term 1'),
+                value: 'Semester1',
+                child: Text('Semester 1'),
               ),
               const PopupMenuItem<String>(
-                value: 'term2',
-                child: Text('Term 2'),
+                value: 'Semester2',
+                child: Text('Semester 2'),
               ),
             ],
           ),

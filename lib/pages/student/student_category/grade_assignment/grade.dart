@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hugeicons/hugeicons.dart';
-import 'package:school_management_system/data/student_category/grade_assignment.dart';
+import 'package:school_management_system/pages/student/student_category/grade_assignment/json_file_loader.dart';
+import 'package:school_management_system/pages/student/student_category/grade_assignment/assignment.dart';
+import 'package:school_management_system/pages/student/student_category/grade_assignment/model_grade_assignment.dart';
 
-class GradeAssignment extends StatelessWidget {
-  const GradeAssignment({super.key});
+class GradeScreen extends StatelessWidget {
+  const GradeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,11 +12,7 @@ class GradeAssignment extends StatelessWidget {
       backgroundColor: Colors.blueGrey[50],
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back_ios,
-            color: Colors.black87,
-            size: 22,
-          ),
+          icon: Icon(Icons.arrow_back_ios, color: Colors.black87, size: 20),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -24,60 +21,61 @@ class GradeAssignment extends StatelessWidget {
         elevation: 0,
         centerTitle: true,
         title: Text(
-          "Grades & Assignments",
+          "Grades",
           style: TextStyle(fontSize: 20),
         ),
       ),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Padding(
-          padding: EdgeInsets.only(top: 2),
-          child: SizedBox(
-            height: MediaQuery.of(context).size.height,
-            child: ListView.builder(
-              itemCount: grade.length,
-              itemBuilder: (context, index) {
-                return Container(
-                  margin: EdgeInsets.symmetric(
-                    vertical: 2,
-                  ),
-                  padding: EdgeInsets.symmetric(vertical: 12),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(5),
-                  ),
+      body: FutureBuilder<List<GradeAssignments>>(
+        future: loadAssignments(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          }
+          if (snapshot.hasError) {
+            return Center(child: Text("Error loading data"));
+          }
+          final grades = snapshot.data!;
+          return ListView.builder(
+            itemCount: grades.length,
+            itemBuilder: (context, index) {
+              final grade = grades[index];
+              return Container(
+                height: 80,
+                decoration: BoxDecoration(color: Colors.white),
+                margin: EdgeInsets.only(top: 1),
+                child: Center(
                   child: ListTile(
                     title: Text(
-                      grade[index].title,
+                      grade.title,
                       style: TextStyle(
                           color: Colors.black87, fontWeight: FontWeight.bold),
                     ),
-                    subtitle: Text(
-                      "Teacher : ${grade[index].teachername}",
-                      style: TextStyle(color: Colors.black54),
-                    ),
+                    subtitle: Text("Teacher: ${grade.teachername}"),
                     leading: ClipRRect(
                       borderRadius: BorderRadius.circular(5),
-                      child: Image(
-                        image: AssetImage(
-                          grade[index].logoPath,
-                        ),
+                      child: Image.asset(
+                        grade.logoPath,
                         height: 50,
                         width: 50,
                         fit: BoxFit.cover,
                       ),
                     ),
-                    trailing: Icon(
-                      Icons.arrow_forward_ios_sharp,
-                      color: Colors.black45,
-                      size: 16,
-                    ),
+                    trailing: Icon(Icons.arrow_forward_ios_sharp, size: 16),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              AssignmentScreen(assignments: grade.assignments),
+                        ),
+                      );
+                    },
                   ),
-                );
-              },
-            ),
-          ),
-        ),
+                ),
+              );
+            },
+          );
+        },
       ),
     );
   }
