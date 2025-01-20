@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:school_management_system/data/grid/grid_student.dart';
+import 'package:school_management_system/grid/grid_student.dart';
 import 'package:school_management_system/pages/home/home_category/information.dart';
 import 'package:school_management_system/pages/student/student_category/attendance.dart';
 import 'package:school_management_system/pages/student/student_category/chat.dart';
@@ -105,7 +105,7 @@ class StudentDashboard extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => GradeScreen()),
+                                    builder: (context) => GradeStudent()),
                               );
                               break;
                             case 'Schedule':
@@ -143,11 +143,11 @@ class StudentDashboard extends StatelessWidget {
                                     builder: (context) => StudentPayment()),
                               );
                               break;
-                            case 'Event':
+                            case 'Announcement':
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => Event()),
+                                    builder: (context) => Announcement()),
                               );
                               break;
                             case 'Contact':

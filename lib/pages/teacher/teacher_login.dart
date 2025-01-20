@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:school_management_system/pages/teacher/teacher_dashboard.dart';
+import 'package:school_management_system/bottom_nav/teacher_bottom_nav.dart';
 
 class TeacherLogin extends StatefulWidget {
   const TeacherLogin({super.key});
@@ -45,7 +45,7 @@ class _TeacherLoginState extends State<TeacherLogin> {
         if (querySnapshot.docs.isNotEmpty) {
           navigator.pushReplacement(
             MaterialPageRoute(
-              builder: (context) => const TeacherDashboard(),
+              builder: (context) => const TeacherBottomNav(),
             ),
           );
         } else {

@@ -3,8 +3,8 @@ import 'package:school_management_system/pages/student/student_category/grade_as
 import 'package:school_management_system/pages/student/student_category/grade_assignment/assignment.dart';
 import 'package:school_management_system/pages/student/student_category/grade_assignment/model_grade_assignment.dart';
 
-class GradeStudent extends StatelessWidget {
-  const GradeStudent({super.key});
+class GradeTeacher extends StatelessWidget {
+  const GradeTeacher({super.key});
 
   @override
   Widget build(BuildContext context) {

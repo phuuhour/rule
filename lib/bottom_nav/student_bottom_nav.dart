@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_boxicons/flutter_boxicons.dart';
-import 'package:school_management_system/pages/student/myprofile.dart';
+import 'package:school_management_system/pages/student/student_profile.dart';
 import 'package:school_management_system/pages/student/student_attendance.dart';
 import 'package:school_management_system/pages/student/student_dashboard.dart';
 
@@ -25,7 +25,7 @@ class _StudentBottomNavState extends State<StudentBottomNav> {
     _widgetOptions = <Widget>[
       StudentDashboard(),
       CheckAttendance(),
-      MyProfile(),
+      StudentProfile(),
     ];
   }
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class MyProfile extends StatelessWidget {
-  const MyProfile({super.key});
+class CodeAttendance extends StatelessWidget {
+  const CodeAttendance({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class MyProfile extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(height: 20),
-              Text('Here is my account information'),
+              Text('Generate code Attendance'),
             ],
           ),
         ),

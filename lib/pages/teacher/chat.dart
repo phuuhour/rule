@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-class Announcement extends StatelessWidget {
-  const Announcement({super.key});
+class TeacherChat extends StatelessWidget {
+  const TeacherChat({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Announcement'),
+        title: Text('Chat'),
       ),
       body: Center(
-        child: Text('No announcements available.'),
+        child: Text('No chat available.'),
       ),
     );
   }

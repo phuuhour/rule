@@ -43,6 +43,7 @@ dependencies:
   firebase_core: ^3.10.0
   cloud_firestore: ^5.6.1
   widget_zoom: ^0.0.4
+  firebase_auth: ^5.4.0
 
 dev_dependencies:
   flutter_test:
@@ -73,6 +74,8 @@ flutter:
     - assets/icons/
     - assets/grid_data/menuhome/
     - assets/grid_data/menustudent/
+    - assets/grid_data/menuteacher/
+    - assets/json/grade_assignments.json
     
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

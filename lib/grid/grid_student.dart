@@ -20,7 +20,8 @@ final List<GridStudent> menustudent = [
   GridStudent(
       iconPath: 'assets/grid_data/menuhome/payment.png', title: 'Payment'),
   GridStudent(
-      iconPath: 'assets/grid_data/menustudent/event.png', title: 'Event'),
+      iconPath: 'assets/grid_data/menustudent/event.png',
+      title: 'Announcement'),
   GridStudent(
       iconPath: 'assets/grid_data/menustudent/contact.png', title: 'Contact'),
   GridStudent(

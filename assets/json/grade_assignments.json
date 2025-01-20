@@ -1,0 +1,119 @@
+{
+  "GradeAssignments": [
+    {
+      "title": "Mobile Programming 2",
+      "teachername": "Rin Soda",
+      "logoPath": "assets/imgs/logo_grades/mobile.png",
+      "assignments": [
+        {
+          "assignmentTitle": "Flutter UI Design",
+          "expiredDate": "2025-01-20"
+        },
+        {
+          "assignmentTitle": "State Management Basics",
+          "expiredDate": "2025-02-15"
+        },
+        {
+          "assignmentTitle": "Integration with APIs",
+          "expiredDate": "2025-03-10"
+        },
+        {
+          "assignmentTitle": "Final Mobile Project",
+          "expiredDate": "2025-04-05"
+        }
+      ]
+    },
+    {
+      "title": "E-Commerce",
+      "teachername": "Heang Borey",
+      "logoPath": "assets/imgs/logo_grades/ecommerce.png",
+      "assignments": [
+        {
+          "assignmentTitle": "Market Research Report",
+          "expiredDate": "2025-01-18"
+        },
+        {
+          "assignmentTitle": "Payment Gateway Setup",
+          "expiredDate": "2025-02-01"
+        },
+        {
+          "assignmentTitle": "Shopping Cart Functionality",
+          "expiredDate": "2025-03-01"
+        },
+        {
+          "assignmentTitle": "E-Commerce Security Audit",
+          "expiredDate": "2025-03-15"
+        }
+      ]
+    },
+    {
+      "title": "Linux 2",
+      "teachername": "Pa David",
+      "logoPath": "assets/imgs/logo_grades/linux.png",
+      "assignments": [
+        {
+          "assignmentTitle": "Command-Line Basics",
+          "expiredDate": "2025-01-22"
+        },
+        {
+          "assignmentTitle": "Bash Scripting Essentials",
+          "expiredDate": "2025-02-05"
+        },
+        {
+          "assignmentTitle": "User and Group Management",
+          "expiredDate": "2025-03-01"
+        },
+        {
+          "assignmentTitle": "Network Configuration",
+          "expiredDate": "2025-03-20"
+        }
+      ]
+    },
+    {
+      "title": "Oracle",
+      "teachername": "Khen Samheng",
+      "logoPath": "assets/imgs/logo_grades/oracle.png",
+      "assignments": [
+        {
+          "assignmentTitle": "Introduction to PL/SQL",
+          "expiredDate": "2025-01-25"
+        },
+        {
+          "assignmentTitle": "Advanced Query Optimization",
+          "expiredDate": "2025-02-10"
+        },
+        {
+          "assignmentTitle": "Database Backup and Recovery",
+          "expiredDate": "2025-03-05"
+        },
+        {
+          "assignmentTitle": "Database Indexing Techniques",
+          "expiredDate": "2025-04-01"
+        }
+      ]
+    },
+    {
+      "title": "System Analysis and Design 2",
+      "teachername": "Chory Solin",
+      "logoPath": "assets/imgs/logo_grades/sad.png",
+      "assignments": [
+        {
+          "assignmentTitle": "Use Case Diagrams",
+          "expiredDate": "2025-02-01"
+        },
+        {
+          "assignmentTitle": "ERD Modeling",
+          "expiredDate": "2025-02-15"
+        },
+        {
+          "assignmentTitle": "System Workflow",
+          "expiredDate": "2025-03-05"
+        },
+        {
+          "assignmentTitle": "Final Project Submission",
+          "expiredDate": "2025-04-01"
+        }
+      ]
+    }
+  ]
+}
