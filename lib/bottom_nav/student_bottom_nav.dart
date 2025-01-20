@@ -25,7 +25,10 @@ class _StudentBottomNavState extends State<StudentBottomNav> {
     _widgetOptions = <Widget>[
       StudentDashboard(),
       CheckAttendance(),
-      StudentProfile(),
+      StudentProfile(
+        email: '',
+        studentId: '',
+      ),
     ];
   }
 
